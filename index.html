@@ -77,6 +77,14 @@
   <div class="result" id="result"></div>
 
   <script>
+function resetForm() {
+  document.getElementById('category').selectedIndex = 0;
+  document.getElementById('budget').value = '';
+  document.getElementById('mode').selectedIndex = 0;
+  document.getElementById('start').value = '';
+  document.getElementById('end').value = '';
+  document.getElementById('result').innerText = '';
+}
     async function loadData() {
       const res = await fetch('benchmarki.json');
       const data = await res.json();
@@ -132,14 +140,6 @@
 
       const output = `
 
-function resetForm() {
-  document.getElementById('category').selectedIndex = 0;
-  document.getElementById('budget').value = '';
-  document.getElementById('mode').selectedIndex = 0;
-  document.getElementById('start').value = '';
-  document.getElementById('end').value = '';
-  document.getElementById('result').innerText = '';
-}
 
 Tryb: ${mode}
 Czas trwania kampanii: ${days} dni
