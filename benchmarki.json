@@ -1,20 +1,20 @@
 [
-  {
-    "kategoria": "Elektronika",
-    "cpc": 0.46,
-    "cr": 0.0129,
-    "ers": 0.0279
-  },
-  {
-    "kategoria": "Ksi\u0105\u017cka",
-    "cpc": 0.49,
-    "cr": 0.0398,
-    "ers": 0.0481
-  },
-  {
-    "kategoria": "Zabawki",
-    "cpc": 0.35,
-    "cr": 0.0265,
-    "ers": 0.022
-  }
+  {"kategoria": "AGD", "cpc": 0.501361, "cr": 0.021399, "ers": 0.042681},
+  {"kategoria": "Art.Pap", "cpc": 0.402635, "cr": 0.030087, "ers": 0.074725},
+  {"kategoria": "Dom i Ogród", "cpc": 0.323296, "cr": 0.019965, "ers": 0.061755},
+  {"kategoria": "Dziecko", "cpc": 1.27091, "cr": 0.03555, "ers": 0.027972},
+  {"kategoria": "Elektronika", "cpc": 0.465316, "cr": 0.012977, "ers": 0.027888},
+  {"kategoria": "Gaming i programy", "cpc": 0.5198, "cr": 0.019643, "ers": 0.037789},
+  {"kategoria": "Kolekcje własne", "cpc": 1.556624, "cr": 0.044332, "ers": 0.028479},
+  {"kategoria": "Książka", "cpc": 0.494678, "cr": 0.039803, "ers": 0.080462},
+  {"kategoria": "Książka obcojęzyczna", "cpc": 0.50455, "cr": 0.033395, "ers": 0.066188},
+  {"kategoria": "Mix", "cpc": 0.638179, "cr": 0.018885, "ers": 0.029591},
+  {"kategoria": "Moda", "cpc": 2.185974, "cr": 0.101846, "ers": 0.04659},
+  {"kategoria": "Multimedia", "cpc": 2.709305, "cr": 0.074866, "ers": 0.027633},
+  {"kategoria": "Muzyka", "cpc": 0.456152, "cr": 0.031381, "ers": 0.068795},
+  {"kategoria": "Podręczniki", "cpc": 0.833957, "cr": 0.037982, "ers": 0.045544},
+  {"kategoria": "Sport", "cpc": 0.355153, "cr": 0.018559, "ers": 0.052255},
+  {"kategoria": "Supermarket", "cpc": 0.500157, "cr": 0.00237, "ers": 0.004739},
+  {"kategoria": "Zabawki", "cpc": 0.355975, "cr": 0.025619, "ers": 0.071968},
+  {"kategoria": "Zdrowie i Uroda", "cpc": 0.408499, "cr": 0.02457, "ers": 0.060148}
 ]
