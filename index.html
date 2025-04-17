@@ -68,9 +68,12 @@
   <label for="end">Data końca kampanii:</label>
   <input type="date" id="end" />
 
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
   <button onclick="calculate()">Oblicz</button>
   <button onclick="copyResult()">📋 Kopiuj wynik</button>
-
+  <button onclick="resetForm()">🧹 Resetuj</button>
+</div>
+  
   <div class="result" id="result"></div>
 
   <script>
@@ -128,6 +131,16 @@
       const costPerConversion = conversions > 0 ? (budget / conversions).toFixed(2) : "brak danych";
 
       const output = `
+
+function resetForm() {
+  document.getElementById('category').selectedIndex = 0;
+  document.getElementById('budget').value = '';
+  document.getElementById('mode').selectedIndex = 0;
+  document.getElementById('start').value = '';
+  document.getElementById('end').value = '';
+  document.getElementById('result').innerText = '';
+}
+
 Tryb: ${mode}
 Czas trwania kampanii: ${days} dni
 
