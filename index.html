@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator Meta Ads</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      color: #F2A516;
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #F2A516;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .result {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="color: #F2A516;">Kalkulator Meta Ads</h1>
+  <label for="category">Kategoria:</label>
+  <select id="category"></select>
+
+  <label for="budget">Budżet całkowity (PLN):</label>
+  <input type="number" id="budget" min="1" />
+
+  <label for="mode">Tryb estymacji:</label>
+  <select id="mode">
+    <option value="średni">Średni</option>
+    <option value="optymistyczny">Optymistyczny</option>
+    <option value="pesymistyczny">Pesymistyczny</option>
+  </select>
+
+  <label for="start">Data startu kampanii:</label>
+  <input type="date" id="start" />
+
+  <label for="end">Data końca kampanii:</label>
+  <input type="date" id="end" />
+
+  <button onclick="calculate()">Oblicz</button>
+  <button onclick="copyResult()">📋 Kopiuj wynik</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    async function loadData() {
+      const res = await fetch('benchmarki.json');
+      const data = await res.json();
+      const select = document.getElementById('category');
+      data.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.kategoria;
+        opt.textContent = item.kategoria;
+        select.appendChild(opt);
+      });
+      return data;
+    }
+
+    function getDays(start, end) {
+      const s = new Date(start);
+      const e = new Date(end);
+      return (e - s) / (1000 * 3600 * 24) + 1;
+    }
+
+    function copyResult() {
+      const text = document.getElementById("result").innerText;
+      navigator.clipboard.writeText(text).then(() => alert("Skopiowano wynik do schowka!"));
+    }
+
+    async function calculate() {
+      const data = await loadData();
+      const cat = document.getElementById('category').value;
+      const budget = parseFloat(document.getElementById('budget').value);
+      const mode = document.getElementById('mode').value;
+      const start = document.getElementById('start').value;
+      const end = document.getElementById('end').value;
+
+      if (!cat || !budget || !start || !end) {
+        document.getElementById('result').innerText = "⚠️ Wypełnij wszystkie pola.";
+        return;
+      }
+
+      const days = getDays(start, end);
+      const found = data.find(d => d.kategoria === cat);
+      if (!found) {
+        document.getElementById('result').innerText = "❌ Brak danych dla tej kategorii.";
+        return;
+      }
+
+      let { cpc, cr } = found;
+      if (mode === "optymistyczny") { cpc *= 0.9; cr *= 1.1; }
+      if (mode === "pesymistyczny") { cpc *= 1.1; cr *= 0.9; }
+
+      const clicks = Math.round(budget / cpc);
+      const conversions = Math.round(clicks * cr);
+      const impressions = Math.round(clicks / cr);
+      const costPerConversion = conversions > 0 ? (budget / conversions).toFixed(2) : "brak danych";
+
+      const output = `
+Tryb: ${mode}
+Czas trwania kampanii: ${days} dni
+
+📈 Kliknięcia: ${clicks}
+👀 Wyświetlenia: ${impressions}
+🛒 Konwersje: ${conversions}
+💰 Koszt/konwersję: ${costPerConversion} zł
+      `;
+      document.getElementById('result').innerText = output;
+    }
+
+    loadData();
+  </script>
+</body>
+</html>

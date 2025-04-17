@@ -1,0 +1,20 @@
+[
+  {
+    "kategoria": "Elektronika",
+    "cpc": 0.46,
+    "cr": 0.0129,
+    "ers": 0.0279
+  },
+  {
+    "kategoria": "Ksi\u0105\u017cka",
+    "cpc": 0.49,
+    "cr": 0.0398,
+    "ers": 0.0481
+  },
+  {
+    "kategoria": "Zabawki",
+    "cpc": 0.35,
+    "cr": 0.0265,
+    "ers": 0.022
+  }
+]
